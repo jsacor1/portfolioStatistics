@@ -1,4 +1,11 @@
 shinyPortfolioStatisticsUI <- function() {
+    shiny::addResourcePath(
+        prefix = "webfonts",
+        directoryPath = system.file(
+            "assets/css/webfonts",
+            package = "portfolioStatistics"
+        )
+    )
     shiny::tagList(
         htmltools::htmlDependency(
             name = "custom_css",
@@ -69,15 +76,13 @@ shinyPortfolioStatisticsServer <- function(input, output, session) {
                     )
                 )
             ),
-            check.names = FALSE
+            check.names = FALSE,
+            row.names = NULL
         )
-        DT::datatable(
-            data = dt,
-            selection = "none",
-            class = "primary",
-            escape = FALSE
-        )
-
+        customTable(dt)
     })
 
 }
+
+# Work on UI mostly, check the design and layout. Make it nice for all page.
+# Avoid any backend work until design phase is finished.
