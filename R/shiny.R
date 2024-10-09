@@ -38,12 +38,12 @@ shinyPortfolioStatisticsUI <- function() {
             style = titleStyle,
             "Data Overview"
         ),
-        DT::dataTableOutput(outputId = "dataOverview"),
+        DT::DTOutput(outputId = "dataOverview"),
         shiny::div(
             style = titleStyle,
             "Statistics"
         ),
-        shiny::dataTableOutput(outputId = "statistics"),
+        DT::DTOutput(outputId = "statistics"),
         shiny::div(
             style = titleStyle,
             "CPPI Analysis"
@@ -72,17 +72,22 @@ shinyPortfolioStatisticsServer <- function(input, output, session) {
                     ",
                     shiny::tags$i(
                         name = "actions-block-js",
-                        class = "text-primary text-center fas fa-cog"
+                        class = "text-primary text-center fas fa-cog",
+                        style = "cursor: pointer;"
                     )
                 )
             ),
             check.names = FALSE,
             row.names = NULL
         )
-        customTable(dt)
+        customTable(
+            dt = dt,
+            options = standardOptions,
+            rownames = FALSE,
+            escape = FALSE,
+            width = "100%",
+            height = "100%",
+        )
     })
 
 }
-
-# Work on UI mostly, check the design and layout. Make it nice for all page.
-# Avoid any backend work until design phase is finished.

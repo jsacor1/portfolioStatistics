@@ -1,7 +1,4 @@
-customTable <- function(dt, options = standardOptions) {
-    # create a list of options used to format the DT table
-    myOptions <- options
-
+customTable <- function(dt, ...) {
     ###Create HTML formatting code for header and overall table HTML container
             #create header style HTML code
     headerStyle <- "
@@ -43,12 +40,8 @@ customTable <- function(dt, options = standardOptions) {
     # Turn the table into a datatable
     myTable <- DT::datatable(
         dt,
-        options = myOptions,
         container = myContainer,
-        rownames = FALSE,
-        escape = FALSE,
-        width = "100%", # table remains within the dimensions of the container
-        height = "100%" # table remains within the dimensions of the container
+        ...
     )
 
     # formatting customisations for row labels of table
