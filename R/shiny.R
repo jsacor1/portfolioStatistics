@@ -90,4 +90,10 @@ shinyPortfolioStatisticsServer <- function(input, output, session) {
         )
     })
 
+    output$cppiAnalysis <- highcharter::renderHighchart({
+        dt <- data[, c("date", "10001", "10002")] |>
+            dplyr::mutate(date = as.Date(date))
+        customHighchart(dt, title = "CPPI Analysis")
+    })
+
 }
