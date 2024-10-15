@@ -90,7 +90,7 @@ customTable <- function(dt, ...) {
         verticalAlign = "middle",
         textAlign = "center",
         wordWrap = "break-word",
-        backgroundColor = "#dce8e8"
+        backgroundColor = "#e6ebeb"
     )
     myTable
 }
