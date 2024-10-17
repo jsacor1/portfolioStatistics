@@ -6,61 +6,77 @@ shinyPortfolioStatisticsUI <- function() {
             package = "portfolioStatistics"
         )
     )
-    shiny::tagList(
-        htmltools::htmlDependency(
-            name = "custom_css",
-            version = utils::packageVersion("portfolioStatistics"),
-            src = c(file = system.file(
-                "assets/css/",
-                package = "portfolioStatistics"
-            )),
-            stylesheet = c(
-                "fontawesome.css"
-            )
-        ),
-        shiny::div(
-            class = "container-fluid",
-            style = "margin: 20px;",
-            shiny::div(
-                class = "test-primary",
-                style = titleStyle,
-                "Data Upload"
-            ),
-            shiny::div(
-                class = "d-inline-flex justify-content-between",
-                style = bigContainerStyling,
-                shiny::actionButton(
-                    inputId = "retsUpload",
-                    label = "Returns Upload"
-                ),
-                shiny::actionButton(
-                    inputId = "generateReturns",
-                    label = "Generate Returns"
+    theme <- bslib::bs_theme(
+        bg = "#F0F0F0",
+        fg = "#343a40",
+        primary = "#008080",
+        secondary = "#008080",
+        success = "#28a745",
+        info = "#17a2b8",
+        warning = "#ffc107",
+        danger = "#dc3545",
+        light = "#f8f9fa",
+        dark = "#343a40"
+    )
+    shiny::fluidPage(
+        theme = theme,
+        shiny::tagList(
+            htmltools::htmlDependency(
+                name = "custom_css",
+                version = utils::packageVersion("portfolioStatistics"),
+                src = c(file = system.file(
+                    "assets/css/",
+                    package = "portfolioStatistics"
+                )),
+                stylesheet = c(
+                    "fontawesome.css"
                 )
             ),
             shiny::div(
-                style = titleStyle,
-                "Data Overview"
-            ),
-            shiny::div(
-                style = bigContainerStyling,
-                DT::DTOutput(outputId = "dataOverview"),
-            ),
-            shiny::div(
-                style = titleStyle,
-                "Statistics"
-            ),
-            shiny::div(
-                style = bigContainerStyling,
-                DT::DTOutput(outputId = "statistics")
-            ),
-            shiny::div(
-                style = titleStyle,
-                "CPPI Analysis"
-            ),
-            shiny::div(
-                style = bigContainerStyling,
-                highcharter::highchartOutput(outputId = "cppiAnalysis")
+                class = "container-fluid",
+                style = "margin: 20px; width: auto;",
+                shiny::div(
+                    class = "test-primary",
+                    style = titleStyle,
+                    "Data Upload"
+                ),
+                shiny::div(
+                    class = "d-inline-flex justify-content-between",
+                    style = bigContainerStyling,
+                    shiny::actionButton(
+                        inputId = "retsUpload",
+                        label = "Returns Upload",
+                        style = "margin-right: 10px;"
+                    ),
+                    shiny::actionButton(
+                        inputId = "generateReturns",
+                        label = "Generate Returns"
+                    )
+                ),
+                shiny::div(
+                    style = titleStyle,
+                    "Data Overview"
+                ),
+                shiny::div(
+                    style = bigContainerStyling,
+                    DT::DTOutput(outputId = "dataOverview"),
+                ),
+                shiny::div(
+                    style = titleStyle,
+                    "Statistics"
+                ),
+                shiny::div(
+                    style = bigContainerStyling,
+                    DT::DTOutput(outputId = "statistics")
+                ),
+                shiny::div(
+                    style = titleStyle,
+                    "CPPI Analysis"
+                ),
+                shiny::div(
+                    style = bigContainerStyling,
+                    highcharter::highchartOutput(outputId = "cppiAnalysis")
+                )
             )
         )
     )
