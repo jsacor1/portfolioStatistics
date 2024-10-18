@@ -67,7 +67,16 @@ shinyPortfolioStatisticsUI <- function() {
                 ),
                 shiny::div(
                     style = bigContainerStyling,
-                    DT::DTOutput(outputId = "statistics")
+                    shiny::tabsetPanel(
+                        shiny::tabPanel(
+                            title = "Statistics",
+                            DT::DTOutput(outputId = "statistics")
+                        ),
+                        shiny::tabPanel(
+                            title = "Efficient Frontier",
+                            highcharter::highchartOutput(outputId = "effFrontier") # nolint: line_length_linter.
+                        )
+                    )
                 ),
                 shiny::div(
                     style = titleStyle,
@@ -75,7 +84,16 @@ shinyPortfolioStatisticsUI <- function() {
                 ),
                 shiny::div(
                     style = bigContainerStyling,
-                    highcharter::highchartOutput(outputId = "cppiAnalysis")
+                    shiny::tabsetPanel(
+                        shiny::tabPanel(
+                            title = "CPPI Analysis",
+                            highcharter::highchartOutput(outputId = "cppiAnalysis") # nolint: line_length_linter.
+                        ),
+                        shiny::tabPanel(
+                            title = "Weight History",
+                            highcharter::highchartOutput(outputId = "weightHistory") # nolint: line_length_linter.
+                        )
+                    )
                 )
             )
         )
